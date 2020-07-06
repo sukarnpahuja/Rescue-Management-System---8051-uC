@@ -1,0 +1,266 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    02/26/2020  15:16:10  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\CODE_PROJECT.obj TO .\Objects\MICRO_PROJECT PRINT (.\Listin
+>> gs\MICRO_PROJECT.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\CODE_PROJECT.obj (CODE_PROJECT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\MICRO_PROJECT (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0012H     UNIT         ?DT?CODE_PROJECT
+            DATA    001AH     0005H     UNIT         _DATA_GROUP_
+            IDATA   001FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     0044H     UNIT         ?PR?MAIN?CODE_PROJECT
+            CODE    08D0H     002DH     UNIT         ?C?LIB_CODE
+            CODE    08FDH     002BH     UNIT         ?PR?_LCD_STRING?CODE_PROJECT
+            CODE    0928H     0027H     UNIT         ?PR?_DELAY?CODE_PROJECT
+            CODE    094FH     001BH     UNIT         ?PR?RECIEVE?CODE_PROJECT
+            CODE    096AH     0016H     UNIT         ?PR?LCD_INI?CODE_PROJECT
+            CODE    0980H     0012H     UNIT         ?PR?_LCD_COMMAND?CODE_PROJECT
+            CODE    0992H     0012H     UNIT         ?PR?_LCD_DATA?CODE_PROJECT
+            CODE    09A4H     000EH     UNIT         ?CO?CODE_PROJECT
+            CODE    09B2H     0005H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\MICRO_PROJECT (?C_STARTUP)
+
+
+SEGMENT                                 DATA_GROUP 
+  +--> CALLED SEGMENT                 START    LENGTH
+-----------------------------------------------------
+?C_C51STARTUP                         -----    -----
+  +--> ?PR?MAIN?CODE_PROJECT
+  +--> ?C_INITSEG
+
+?PR?MAIN?CODE_PROJECT                 -----    -----
+  +--> ?PR?LCD_INI?CODE_PROJECT
+  +--> ?PR?_LCD_COMMAND?CODE_PROJECT
+  +--> ?CO?CODE_PROJECT
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  02/26/2020  15:16:10  PAGE 2
+
+
+  +--> ?PR?_LCD_STRING?CODE_PROJECT
+  +--> ?PR?_DELAY?CODE_PROJECT
+  +--> ?PR?RECIEVE?CODE_PROJECT
+  +--> ?PR?_LCD_DATA?CODE_PROJECT
+
+?PR?LCD_INI?CODE_PROJECT              -----    -----
+  +--> ?PR?_DELAY?CODE_PROJECT
+  +--> ?PR?_LCD_COMMAND?CODE_PROJECT
+
+?PR?_DELAY?CODE_PROJECT               -----    -----
+  +--> ?PR?_LCD_COMMAND?CODE_PROJECT
+
+?PR?_LCD_STRING?CODE_PROJECT          001AH    0005H
+  +--> ?PR?_LCD_DATA?CODE_PROJECT
+
+?PR?_LCD_DATA?CODE_PROJECT            -----    -----
+  +--> ?PR?_DELAY?CODE_PROJECT
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\MICRO_PROJECT (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0800H         SEGMENT       ?C_C51STARTUP
+  I:001FH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0803H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0800H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0800H         LINE#         133
+  C:0802H         LINE#         134
+  C:0803H         LINE#         135
+  C:0804H         LINE#         136
+  C:0806H         LINE#         185
+  C:0809H         LINE#         196
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  02/26/2020  15:16:10  PAGE 3
+
+
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        CODE_PROJECT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  C:092FH         PUBLIC        _delay
+  B:0098H.0       PUBLIC        RI
+  C:088CH         PUBLIC        main
+  C:08FDH         PUBLIC        _lcd_string
+  C:0992H         PUBLIC        _lcd_data
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0008H         PUBLIC        temp
+  D:000AH         PUBLIC        card_id
+  D:008DH         PUBLIC        TH1
+  B:0090H.2       PUBLIC        en
+  C:096AH         PUBLIC        lcd_ini
+  D:0016H         PUBLIC        data_out
+  B:0088H.6       PUBLIC        TR1
+  D:00A0H         PUBLIC        lcd_data_pin
+  D:0018H         PUBLIC        command
+  B:0090H.0       PUBLIC        rs
+  C:094FH         PUBLIC        recieve
+  B:0090H.1       PUBLIC        rw
+  C:0980H         PUBLIC        _lcd_command
+  -------         PROC          L?0030
+  -------         ENDPROC       L?0030
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        count
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:092FH         LINE#         11
+  C:092FH         LINE#         12
+  C:092FH         LINE#         14
+  C:0939H         LINE#         15
+  C:094EH         LINE#         16
+  -------         ENDPROC       _DELAY
+  -------         PROC          _LCD_COMMAND
+  D:0007H         SYMBOL        comm
+  C:0980H         LINE#         18
+  C:0980H         LINE#         19
+  C:0980H         LINE#         20
+  C:0982H         LINE#         21
+  C:0984H         LINE#         22
+  C:0986H         LINE#         23
+  C:0988H         LINE#         24
+  C:098FH         LINE#         25
+  C:0991H         LINE#         26
+  -------         ENDPROC       _LCD_COMMAND
+  -------         PROC          _LCD_DATA
+  D:0007H         SYMBOL        disp
+  C:0992H         LINE#         28
+  C:0992H         LINE#         29
+  C:0992H         LINE#         30
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  02/26/2020  15:16:10  PAGE 4
+
+
+  C:0994H         LINE#         31
+  C:0996H         LINE#         32
+  C:0998H         LINE#         33
+  C:099AH         LINE#         34
+  C:09A1H         LINE#         35
+  C:09A3H         LINE#         36
+  -------         ENDPROC       _LCD_DATA
+  -------         PROC          _LCD_STRING
+  D:001AH         SYMBOL        disp
+  -------         DO            
+  D:001DH         SYMBOL        x
+  -------         ENDDO         
+  C:08FDH         LINE#         38
+  C:0903H         LINE#         39
+  C:0903H         LINE#         41
+  C:091AH         LINE#         42
+  C:091AH         LINE#         43
+  C:091DH         LINE#         44
+  C:0927H         LINE#         45
+  -------         ENDPROC       _LCD_STRING
+  -------         PROC          LCD_INI
+  C:096AH         LINE#         46
+  C:096AH         LINE#         47
+  C:096AH         LINE#         48
+  C:096CH         LINE#         49
+  C:096FH         LINE#         50
+  C:0971H         LINE#         51
+  C:0974H         LINE#         52
+  C:0979H         LINE#         53
+  -------         ENDPROC       LCD_INI
+  -------         PROC          RECIEVE
+  -------         DO            
+  D:0007H         SYMBOL        k
+  -------         ENDDO         
+  C:094FH         LINE#         56
+  C:094FH         LINE#         57
+  C:094FH         LINE#         59
+  C:095BH         LINE#         60
+  C:095BH         LINE#         61
+  C:095EH         LINE#         62
+  C:0964H         LINE#         63
+  C:0966H         LINE#         64
+  C:0969H         LINE#         65
+  -------         ENDPROC       RECIEVE
+  -------         PROC          MAIN
+  -------         DO            
+  D:0082H         SYMBOL        l
+  -------         ENDDO         
+  C:088CH         LINE#         67
+  C:088CH         LINE#         68
+  C:088CH         LINE#         70
+  C:088FH         LINE#         71
+  C:0892H         LINE#         72
+  C:0895H         LINE#         73
+  C:0897H         LINE#         74
+  C:089AH         LINE#         75
+  C:089FH         LINE#         76
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  02/26/2020  15:16:10  PAGE 5
+
+
+  C:08A8H         LINE#         77
+  C:08AFH         LINE#         78
+  C:08AFH         LINE#         79
+  C:08AFH         LINE#         80
+  C:08B2H         LINE#         81
+  C:08B7H         LINE#         82
+  C:08BAH         LINE#         83
+  C:08BAH         LINE#         84
+  C:08C5H         LINE#         85
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        CODE_PROJECT
+
+  -------         MODULE        ?C?CLDOPTR
+  C:08D0H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 010CH BYTE (13%) *
+******************************************************************************
+
+Program Size: data=32.0 xdata=0 code=442
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

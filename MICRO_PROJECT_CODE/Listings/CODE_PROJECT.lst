@@ -1,0 +1,114 @@
+C51 COMPILER V9.60.0.0   CODE_PROJECT                                                      02/26/2020 15:16:10 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CODE_PROJECT
+OBJECT MODULE PLACED IN .\Objects\CODE_PROJECT.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE CODE_PROJECT.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listi
+                    -ngs\CODE_PROJECT.lst) TABS(2) OBJECT(.\Objects\CODE_PROJECT.obj)
+
+line level    source
+
+   1          //Program to interface RFID and LCD with 8051 microcontroller (AT89S51) 
+   2          
+   3          #include<reg51.h> 
+   4          unsigned int data_out,command=0x80,temp; 
+   5          sfr lcd_data_pin=0xA0;     //P2 port 
+   6          sbit rs=P1^0;              //Register select  
+   7          sbit rw=P1^1;              //Read/Write  
+   8          sbit en=P1^2;              //Enable pin 
+   9          unsigned char card_id[12]; 
+  10           
+  11          void delay(unsigned int count)    //Function to provide delay 
+  12          { 
+  13   1          int i,j; 
+  14   1           for(i=0;i<count;i++) 
+  15   1           for(j=0;j<1275;j++); 
+  16   1      } 
+  17           
+  18          void lcd_command(unsigned char comm)   //Lcd command funtion 
+  19          { 
+  20   1           lcd_data_pin=comm; 
+  21   1           en=1; 
+  22   1           rs=0; 
+  23   1           rw=0; 
+  24   1           delay(1); 
+  25   1           en=0; 
+  26   1      } 
+  27           
+  28          void lcd_data(unsigned char disp)  //Lcd data function 
+  29          { 
+  30   1           lcd_data_pin=disp; 
+  31   1           en=1; 
+  32   1           rs=1; 
+  33   1           rw=0; 
+  34   1           delay(1); 
+  35   1           en=0; 
+  36   1      } 
+  37           
+  38          lcd_string(unsigned char *disp)     //Function to send string  
+  39          { 
+  40   1           int x; 
+  41   1           for(x=0;disp[x]!=0;x++) 
+  42   1          { 
+  43   2               lcd_data(disp[x]); 
+  44   2          } 
+  45   1      } 
+  46          void lcd_ini()                  //Function to initialize the LCD 
+  47          { 
+  48   1          lcd_command(0x38);           
+  49   1          delay(5); 
+  50   1          lcd_command(0x0F);         
+  51   1          delay(5); 
+  52   1          lcd_command(0x80); 
+  53   1          delay(5); 
+  54   1      }  
+C51 COMPILER V9.60.0.0   CODE_PROJECT                                                      02/26/2020 15:16:10 PAGE 2   
+
+  55           
+  56          void recieve()     //Function to recieve data serialy from RS232  
+  57          { 
+  58   1          unsigned char k; 
+  59   1           for(k=0;k<12;k++) 
+  60   1           {  
+  61   2               while(RI==0);  
+  62   2                card_id[k]=SBUF; 
+  63   2                RI=0; 
+  64   2          } 
+  65   1      } 
+  66           
+  67          void main() 
+  68          { 
+  69   1          int l; 
+  70   1          TMOD=0x20;            //Enable Timer 1 mode 2
+  71   1          TH1=0xFD; 
+  72   1          SCON=0x50;             // serial port control (serial mode 1 select2)
+  73   1          TR1=1;                // Triggering Timer 1 
+  74   1          lcd_ini(); 
+  75   1          lcd_command(0x81);        //Place cursor to second position of first line  
+  76   1          lcd_string("RFID CARD ID:"); 
+  77   1          delay(200); 
+  78   1          while(1) 
+  79   1          { 
+  80   2               recieve(); 
+  81   2               lcd_command(0xC1);        //Place cursor to second position of second line 
+  82   2               for(l=0;l<12;l++) 
+  83   2               {  
+  84   3                    lcd_data(card_id[l]);
+  85   3               } 
+  86   2        }
+  87   1      } 
+*** WARNING C290 IN LINE 45 OF CODE_PROJECT.c: missing return value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    235    ----
+   CONSTANT SIZE    =     14    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
